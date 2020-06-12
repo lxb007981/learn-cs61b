@@ -5,7 +5,7 @@ import java.util.Formatter;
  * with a large number of additional methods.
  *
  * @author P. N. Hilfinger, with some modifications by Josh Hug and melaniecebula
- *         [Do not modify this file.]
+ * [Do not modify this file.]
  */
 public class IntList {
     /**
@@ -29,7 +29,7 @@ public class IntList {
      * A List with null rest, and first = 0.
      */
     public IntList() {
-    /* NOTE: public IntList () { }  would also work. */
+        /* NOTE: public IntList () { }  would also work. */
         this(0, null);
     }
 
@@ -82,7 +82,12 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        IntList first = A;
+        while (first.rest != null) {
+            first = first.rest;
+        }
+        first.rest = B;
+        return A;
     }
 
     /**
@@ -90,23 +95,37 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        IntList process;
+        IntList first;
+        if (A == null) {
+            if (B != null) {
+                first = new IntList(B.first, null);
+                process = first;
+            } else return null;
+        } else {
+            first = new IntList(A.first, null);
+            process = first;
+            IntList Acurrent = A.rest;
+            while (Acurrent != null) {
+                process.rest = new IntList(Acurrent.first, null);
+                process = process.rest;
+                Acurrent = Acurrent.rest;
+            }
+            if (B == null) {
+                return first;
+            } else {
+                process.rest = new IntList(B.first, null);
+                process = process.rest;
+            }
+        }
+        IntList Bcurrent = B.rest;
+        while (Bcurrent != null) {
+            process.rest = new IntList(Bcurrent.first, null);
+            process = process.rest;
+            Bcurrent = Bcurrent.rest;
+        }
+        return first;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**
