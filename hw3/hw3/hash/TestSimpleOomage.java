@@ -1,6 +1,7 @@
 package hw3.hash;
 
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
@@ -29,6 +30,18 @@ public class TestSimpleOomage {
           meaning no two SimpleOomages should EVER have the same
           hashCode UNLESS they have the same red, blue, and green values!
          */
+        int r = 30;
+        int g = 100;
+        int b = 150;
+        SimpleOomage so1 = new SimpleOomage(r, g, b);
+        int x = 60;
+        SimpleOomage so2 = new SimpleOomage(r, x, g + b - x);
+        SimpleOomage so3 = new SimpleOomage(x, g, g + r - x);
+        SimpleOomage so4 = new SimpleOomage(r, g - x + b, x);
+        assertNotEquals(so1.hashCode(), so2.hashCode());
+        assertNotEquals(so3.hashCode(), so2.hashCode());
+        assertNotEquals(so4.hashCode(), so2.hashCode());
+        assertNotEquals(so3.hashCode(), so4.hashCode());
     }
 
     @Test
@@ -42,7 +55,7 @@ public class TestSimpleOomage {
         assertNotEquals(ooA, "ketchup");
     }
 
-    /*
+
     @Test
     public void testHashCodeAndEqualsConsistency() {
         SimpleOomage ooA = new SimpleOomage(5, 10, 20);
@@ -50,10 +63,10 @@ public class TestSimpleOomage {
         HashSet<SimpleOomage> hashSet = new HashSet<>();
         hashSet.add(ooA);
         assertTrue(hashSet.contains(ooA2));
-    }*/
+    }
 
     /* TODO: Uncomment this test after you finish haveNiceHashCode Spread in OomageTestUtility */
-    /*@Test
+    @Test
     public void testRandomOomagesHashCodeSpread() {
         List<Oomage> oomages = new ArrayList<>();
         int N = 10000;
@@ -63,9 +76,11 @@ public class TestSimpleOomage {
         }
 
         assertTrue(OomageTestUtility.haveNiceHashCodeSpread(oomages, 10));
-    }*/
+    }
 
-    /** Calls tests for SimpleOomage. */
+    /**
+     * Calls tests for SimpleOomage.
+     */
     public static void main(String[] args) {
         jh61b.junit.textui.runClasses(TestSimpleOomage.class);
     }

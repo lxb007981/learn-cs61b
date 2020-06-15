@@ -73,13 +73,13 @@ public class Word implements WorldState {
 
     @Override
     public Iterable<WorldState> neighbors() {
-        Set<WorldState> neighbs = new HashSet<>();
+        Set<WorldState> neighbors = new HashSet<>();
         for (String s : words) {
             if (editDistance(this.word, s) == 1) {
-                neighbs.add(new Word(s, goal));
+                neighbors.add(new Word(s, goal));
             }
         }
-        return neighbs;
+        return neighbors;
     }
 
     @Override
